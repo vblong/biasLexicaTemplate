@@ -10,7 +10,7 @@ Word Embedding is a language modeling technique used for mapping words to vector
 
 Word2Vec consists of models for generating word embedding. These models are shallow two layer neural networks having one input layer, one hidden layer and one output layer.
 
-<b>Write a program in Python which takes the input file given here on http://www.gutenberg.org/files/12/12-0.txt and calculate the 10 most similar words for the word 'Alice'. Print out the cosine distances of Alice to each of the 10 words. You will need to use tokenization and charakter replacements, but are free in any model choice. Helpful python modules can be genism and nltk. <b>
+<b>Write a program in Python which takes the input file given here on http://www.gutenberg.org/files/12/12-0.txt and calculate the 10 most similar words for the word 'Alice'. Print out the cosine distances of Alice to each of the 10 words. You will need to use tokenization and charakter replacements, but are free in any model choice. Helpful python modules can be genism and nltk. </b>
 
 ## Detailed Instructions 
 
