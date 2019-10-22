@@ -2,7 +2,7 @@
 ## Summary
 This task should be a starting point for you before you contributing to an ag-gipp project. We are using several techniques and tools to organize our development process. To keep it well structured and organized, every developer must be familiar with those tools before he/she is contributing new code. Please note that successfully finishing this task does not replace project specific contributing guidelines.
 
-This project aims for two goals. One is to solve a problem programmatically, while the other one is to give you the understanding of our workflow and the tools we are using. The task description explains the task you have to solve. Please follow each point of the detailed instructions and at least get familiar with the tools in the optional features section. Note that most of the linked guides are comprehensive and way too big for your purposes. It's up to you to find the right dose of information you need.
+This project aims for two goals. One is to solve a problem programmatically, while the other one is to give you the understanding of our workflow and the tools we are using. The task description explains the task you have to solve. Please follow each point of the detailed instructions and at get a little familiar with the tools in the optional features section. Note that the linked guides are comprehensive and way too big for your purposes. It's up to you to find the right dose of information you need.
 
 ## Task Description
 
@@ -10,7 +10,7 @@ Word Embedding is a language modeling technique used for mapping words to vector
 
 Word2Vec consists of models for generating word embedding. These models are shallow two layer neural networks having one input layer, one hidden layer and one output layer.
 
-Write a program in Python which takes the input file given here on http://www.gutenberg.org/files/12/12-0.txt and calculate the 10 most similar words for the word 'Alice'. Print out the cosine distances of Alice to each of the 10 words. You will need to use tokenization and charakter replacements, but are free in any model choice. Helpful python modules can be genism and nltk. 
+<b>Write a program in Python which takes the input file given here on http://www.gutenberg.org/files/12/12-0.txt and calculate the 10 most similar words for the word 'Alice'. Print out the cosine distances of Alice to each of the 10 words. You will need to use tokenization and charakter replacements, but are free in any model choice. Helpful python modules can be genism and nltk. <b>
 
 ## Detailed Instructions 
 
