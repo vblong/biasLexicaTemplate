@@ -14,9 +14,10 @@ Word2Vec consists of models for generating word embedding. These models are shal
  similar words to each of those words. Print out the cosine distances of each word to all its most similar words. You will need to use tokenization and charakter replacements, but are free in any model choice. An example of the process on how to calculate the bias words is given in this paper: https://bit.ly/2BCugKE. 
 Helpful python modules can be genism and nltk. To enhance your creativity, you are free of choice in the selection of a newspaper and any type of scraping.</b>
 
+Please note that the given links are just some examples. There is a lot of information about scraping and bias on the web - it is a fascinating topic, feel free to get into it more deeply and/or from other sources than the ones given here ;-).
 
 
-## Detailed Instructions 
+## Further Instructions 
 
 <a href="https://github.com"><img align="right" src="https://image.flaticon.com/icons/svg/25/25231.svg" height="28"></a><a href="https://git-scm.com/"><img align="right" src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" height="28"></a>
 ### Git & GitHub
