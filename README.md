@@ -10,7 +10,11 @@ Word Embedding is a language modeling technique used for mapping words to vector
 
 Word2Vec consists of models for generating word embedding. These models are shallow two layer neural networks having one input layer, one hidden layer and one output layer.
 
-<b>Write a program in Python which takes the input file given here on http://www.gutenberg.org/files/12/12-0.txt and calculate the 10 most similar words for the word 'Alice'. Print out the cosine distances of Alice to each of the 10 words. You will need to use tokenization and charakter replacements, but are free in any model choice. Helpful python modules can be genism and nltk. </b>
+<b>First, scrape a dataset from any english newspaper you like. Your dataset should at least contain a 1000 articles and should be no older than 2017. Then, write a program in Python which takes your dataset and calculates the 1000 most likely bias words for any 10 bias words of your choice. So you will choose 10 words that you think express are good examples for bias in your dataset, and then use word embeddings to calculate the 100 most
+ similar words to each of those words. Print out the cosine distances of each word to all its most similar words. You will need to use tokenization and charakter replacements, but are free in any model choice. An example of the process on how to calculate the bias words is given in this paper: https://bit.ly/2BCugKE. 
+Helpful python modules can be genism and nltk. To enhance your creativity, you are free of choice in the selection of a newspaper and any type of scraping.</b>
+
+
 
 ## Detailed Instructions 
 
