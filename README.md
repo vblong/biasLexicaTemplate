@@ -35,7 +35,9 @@ _From now on, push every change to GitHub!_
 
 1.    use Properties und setter (instead of getter und setter), public attributes if necessary and useful.
 2.    use "class XYZ:" instead of  "class XYZ(object):"
-3.    use Type Hints (consider this stackoverflow question and first answer.)
+3.    use Type Hints (consider 
+<a href="https://stackoverflow.com/questions/33533148/how-do-i-specify-that-the-return-type-of-a-method-is-the-same-as-the-class-itsel">this stackoverflow question and first answer</a>
+.)
 4.    use PyCharm or IntelliJ with Python plugin
 5.    "Reformat code" before pushing anything to the repo (https://www.jetbrains.com/help/pycharm/reformat-and-rearrange-code.html)
 6.    write comments
