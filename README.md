@@ -45,7 +45,6 @@ _From now on, push every change to GitHub!_
 8.    use variable names that speak for themselves! bad: "tmp", good: "named_entity_counter"
 9.    For more information on how to write good Python code and documentation, see https://www.python.org/dev/peps/pep-0008/
 
-Code must be executable on Python 3.6!
 
 
 ### Final Statement
