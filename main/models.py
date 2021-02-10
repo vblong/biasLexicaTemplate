@@ -7,13 +7,13 @@ class IArticle:
     url = ""
     date = None
 
-    def __init__(self, authors = [], title = "", text = "", categories = [], url = "", date = None):
-        self.authors    = authors
-        self.title      = title
-        self.text       = text
+    def __init__(self, authors=[], title="", text="", categories=[], url="", date=None):
+        self.authors = authors
+        self.title = title
+        self.text = text
         self.categories = categories
-        self.url        = url
-        self.date       = date
+        self.url = url
+        self.date = date
 
     def set_authors(self, authors):
         self.authors = authors

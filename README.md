@@ -1,56 +1,90 @@
-# [biasWord]-Task
-## Summary
-This task should be a starting point for you before you contributing to an ag-gipp project. We are using several techniques and tools to organize our development process. To keep it well structured and organized, every developer must be familiar with those tools before he/she is contributing new code. Please note that successfully finishing this task does not replace project specific contributing guidelines.
+# This project consists of source code and results by working on the tasks from the project 'biasLexicaTemplate'
+### Original Link: https://github.com/ag-gipp/biasLexicaTemplate
 
-This project aims for two goals. One is to solve a problem programmatically, while the other one is to give you the understanding of our workflow and the tools we are using. The task description explains the task you have to solve. Please follow each point of the detailed instructions and at get a little familiar with the tools in the optional features section. Note that the linked guides are comprehensive and way too big for your purposes. It's up to you to find the right dose of information you need.
+## 0. Project Summary
+Choose any 10 seed words manually that you consider as biased words. Scrape 1000 articles on the internet, build a Word2Vec model from them, then get out 100 most similar words for each of the 10 chosen biased words. Results should consist of the similar words and its cosine distance with the seed word.
 
-## Task Description
+## 1. How it's done
+### 1.1 Scrapping data
+I use a scrapper called 'newspaper' to scrape the articles, link: https://github.com/codelucas/newspaper. 
 
-Word Embedding is a language modeling technique used for mapping words to vectors of real numbers. It represents words or phrases in vector space with several dimensions. Word embeddings can be generated using various methods like neural networks, co-occurrence matrix, probabilistic models, etc.
+First I list out 50 online news websites, then browse all of them, on each websites I use jQuery to list out several articles links on the homepage, then store all of them inside the 'articleUrls' file.
 
-Word2Vec consists of models for generating word embedding. These models are shallow two layer neural networks having one input layer, one hidden layer and one output layer.
+A total of 1154 retrieved links, however only 1009 of them are scrape-able, as some returns 404 or some strange errors, or maybe it's the scraper problem.
+ 
+The 50 news websites are taken from here: https://libguides.wlu.edu/c.php?g=357505&p=2412837
 
-<b>First, scrape a dataset from any english newspaper you like ( You can write your own script or adapt an existing solution). Your dataset should at least contain a 1000 articles and should be no older than 2017. Then, write a program in Python which takes your dataset and calculates the 1000 most likely bias words for any 10 bias words of your choice. So you will choose 10 words that you think are good examples for bias in your dataset (See a short description of what bias is onhttps://www.thoughtco.com/what-is-biased-language-1689168), and then use word embeddings to calculate the 100 most
- similar words to each of those words. Print out the cosine distances of each word to all its most similar words. You will need to use tokenization and charakter replacements, but are free in any model choice. An example of the process on how to calculate the bias words is given in this paper: http://wikiworkshop.org/2018/papers/wikiworkshop2018_paper_1.pdf. 
-Helpful python modules can be genism and nltk. To enhance your creativity, you are free of choice in the selection of a newspaper and any type of scraping.</b>
+As I get only the urls that are presented on the homepage, the scrapped articles are then only the newest ones, however their topics are very broad and this may not be a good training data set.
 
-Please note that the given links are just some examples. There is a lot of information about scraping and bias on the web - it is a fascinating topic, feel free to get into it more deeply and/or from other sources than the ones given here ;-).
+Finally I extracted the info that I consider important and store them in my own article class, namely 'IArticle' inside 'models.py' file
+
+### 1.2 Clean data and train a Word2Vec model
+All articles are then tokenized and stored into arrays, and a collection of all of them are build.
+
+As the data set is pured, having it cleaned is necessary. 
+
+For that I removed all punctuations, and make them all lowercase.
+
+At first I also removed stop words, however, some stop words are also considered as biased words, so I decided to not remove them anymore, instead I removed any tokens that consist less than 3 characters.
+
+Any tokens that represent numbers are also removed.
+
+After that the training session begins, here the Gensim library is used as stated from the task description, and the training takes one function call.
+
+## 2. Result 
+The 10 seed words are: 
+
+`["housewife", "old", "policeman", "maid", "homosexual", "aliens", "slave", "gay", "tribe", "actress"]`
+
+As this is the first time I hear about something called "bias language", the way I chose seed words are completely random, all of them are taken from these 2 websites:
+
+- https://blog.ongig.com/diversity-and-inclusion/biased-language-examples/
+- https://www.niu.edu/writingtutorial/style/bias-free-language.shtml
+
+For each seed word, 100 most similar words are printed out along with their cosine distances. Result are stored in '/results/result.csv' file if desired.
+
+Here I list out 10 most similar words for the first 5 seed words, for the complete result please see the result.csv file.
+
+housewife | old | policeman | maid | homosexual
+--------- | --- | --------- | ---- | ----------
+macwilliams:0.9962 | last:0.9798 | colon: 09414 | kamala:0.9747 | centered:0.994
+justin:0.9961 | starter:0.9294 | anja:0.9323 | slideshow:0.972 | sarah:0.994
+run:0.9959 | olds:0.9276 | vacancies:0.9315 | texting:0.9715 | industrial:0.9939
+tennis:0.9958 | exceeds:0.9146 | exceeds:0.9314 | marin:0.9707 | writer:0.9938
+magazine:0.9958 | 503million:0.9137 | hiatus:0.9252 | girlfriends:0.9695 | trials:0.9937
+mahrez:0.9957 | vacancies:0.9111 | payton:0.9233 | trap:0.9695 | walters:0.9936
+australia:0.9957 | phanerozoic:0.9035 | demi:0.9231 | vice:0.9694 | dancers:0.9936
+college:0.9955 | racked:0.9028 | ciulla:0.9201 | spector:0.9692 | cnet:0.9936
+angela:0.9953 | 15m:0.9028 | sequences:0.9171 | declaring:0.9675 | sofia:0.9936
+himself:0.9953 | annus:0.9023 | four:0.9169 | robertson:0.9673 | anti:0.9935
+
+## 3. How to run
+This project relies on the following libraries, be sure to have them installed before you run: `newspaper`, `nltk`, `gensim`.
+
+All Python code are in the `main` folder. There are 3 functions you can play with in the `main.py` file:
+
+- `doDownload(articleLinksFile=None, saveFileName=None)` : this function will download all articles from all the links inside `articleUrls` file, then store them inside `articles.csv` file using the structure defined in the class `IArticle` (`models.py`)
+    * `articleLinksFile`: if nothing is passed, the file `articlesUrls.txt` will be used.
+    * `saveFileName`: if nothing is passed, the file `articles.csv` will be used.
+
+- `doTraining()` : will read all articles from `articles.csv` file, then build a Word2Vec model and store the model as a file at this location `model/word2vec.model`.
+
+- `doDisplayResult(resultFileName=None, biasedWords=None)` : will list out 100 most similar words for the chosen seed words. The result can be stored in a file if desired. 
+    * `resultFileName`: if nothing is passed in, no data will be saved, otherwise the resulted file will be created and stored inside the `results` folder
+    * `biasedWords`: if nothing is passed, default seed words from section 2 shall be used
 
 
-## Further Instructions 
+## 4. Ways to improvements
 
-<a href="https://github.com"><img align="right" src="https://image.flaticon.com/icons/svg/25/25231.svg" height="28"></a><a href="https://git-scm.com/"><img align="right" src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" height="28"></a>
-### Git & GitHub
+### 4.1 Data selection
+The scrapped articles varied in a lot of topics, focusing on a few specific topics or even only one topic should produce more accurate result, this also leads to the seed words selection less random. 
 
-1. Create a GitHub account and send your supervisor your username.
-2. Get familiar with the basics of [Git](https://git-scm.com/book/en/v2/) and [GitHub](https://guides.github.com/activities/hello-world) to achieve the following steps
-    1. `Checkout` your project template on your local machine (do not make any changes directly on the GitHub page! Use your terminal or your IDE to work with Git, i.e., pull, commit, push changes.)
-    2. Create a file called `README.md` and explain what your project will do, what you need to achieve and how to use the program when finished your task. Put this file in your project parent directory so that it will show up in your GitHub-project start page.
-    3. Create a `.gitignore` File and put it into your parent directory.
-    4. __Optional:__ in bigger projects, we usually work on multiple branches. To get familiar with this technique, push your first changes to another branch (please use your terminal and not your IDE to see how it works most natively). However, in your task, you are the only developer and the project is small so it is not necessary to work with multiple branches furthermore. Thus, merge the second branch back to `master` and just work on the `master` branch. Don't forget to delete the temporary branch you just created. This keeps your repository clean.
+### 4.2 More preprocessing
+We can see that there are some strange words appear in the table above and do not have much meaning, such words are personal name, e.g Justin, Payton, Anja... and words that represent unit e.g 503millions, 15m...etc
 
-_From now on, push every change to GitHub!_ 
+A few more preprocessing steps for removing them might have some posotive impacts on the result data. 
 
-### (Optional) Coding guidelines
+The dataset shows that some 
 
-1.    use Properties und setter (instead of getter und setter), public attributes if necessary and useful.
-2.    use "class XYZ:" instead of  "class XYZ(object):"
-3.    use Type Hints (consider 
-<a href="https://stackoverflow.com/questions/33533148/how-do-i-specify-that-the-return-type-of-a-method-is-the-same-as-the-class-itsel">this stackoverflow question and first answer</a>
-.)
-4.    use PyCharm or IntelliJ with Python plugin
-5.    "Reformat code" before pushing anything to the repo (https://www.jetbrains.com/help/pycharm/reformat-and-rearrange-code.html)
-6.    write comments
-7.    avoid long functions
-8.    use variable names that speak for themselves! bad: "tmp", good: "named_entity_counter"
-9.    For more information on how to write good Python code and documentation, seehttps://www.python.org/dev/peps/pep-0008/
-
-
-
-### Final Statement
-
-Please note that this task is not a tutorial to guide you through each tool. You have to figure out each part on your own. We do not claim to become an expert in every mentioned tool, but we expect a basic knowledge from you once you finished this task. Thus, don't lose yourself in hundreds of manual pages but get familiar with the basics that are necessary.
-
-Also, if you have any comments for us, for example how we could improve this task, what was too difficult or too easy, let us know your opinion. We highly appreciate your feedback.
-
-Good luck!
+### 4.3 Try with more hyperparameters and validation
+Here I use Gensim to build a word2vec model with default hyperparameters, try with more variations and even using some k-fold-validation may give new insights. 

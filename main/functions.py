@@ -1,6 +1,6 @@
 # 50 Top level domains are stored in urls.txt
 # Source: https://libguides.wlu.edu/c.php?g=357505&p=2412837
-# From there more than 1000 article urls are retrieved and stored in articleUrls
+# From there more than 1000 article urls are retrieved and stored in articleUrls.txt.txt
 
 from newspaper import Article
 import newspaper
@@ -8,6 +8,7 @@ import csv
 from gensim.models import Word2Vec
 from models import IArticle
 from nltk.tokenize import sent_tokenize, word_tokenize, RegexpTokenizer
+
 
 def saveArticlesToFile(fileNameOutput, articles):
     # Download all articles
@@ -69,6 +70,7 @@ def downloadArticles(articleLink, outputFilename):
 
     saveArticlesToFile(outputFilename, articles)
 
+
 # Read all articles stored in articles.csv
 def readArticles():
     articles = []
@@ -78,17 +80,18 @@ def readArticles():
             try:
                 if checkEmpty(row) == False and index > 0:
                     articles.append(IArticle(
-                        row[0],             # Author
-                        row[11],            # Title
-                        row[10],            # Text
-                        row[3],             # Categories
-                        row[2],             # Url
-                        row[6]              # Date Published
+                        row[0],  # Author
+                        row[11],  # Title
+                        row[10],  # Text
+                        row[3],  # Categories
+                        row[2],  # Url
+                        row[6]  # Date Published
                     ))
             except:
                 print("An error occured while reading article #", index)
 
     return articles
+
 
 # Inside articles.csv, there are some rows that are complete empty.
 # However, column 7th is the column that stores the article's url.
@@ -98,6 +101,7 @@ def checkEmpty(row):
     if row[7] == None or row[7] == "":
         return True
     return False
+
 
 # Remove tokens which represent number and tokens which consist less than 2 character
 # Then make them all in lowercase
@@ -113,6 +117,7 @@ def preprocessing(tokens):
                 numOfToken = numOfToken + 1
         result.append(arr)
     return (result, numOfToken)
+
 
 def computeBiasWords(articles):
     # Tokenizing + removing punctuations

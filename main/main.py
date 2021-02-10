@@ -1,10 +1,18 @@
 from functions import *
 
+
 # 1st argument: the file which stores the article urls to be downloaded
 # 2nd argument: the file which stores the downloaded articles
 # Some url can't be downloaded due to some backend reasons.
-def doDownload():
-    downloadArticles('./articleUrls', 'articles3.csv')
+def doDownload(articleLinksFile=None, saveFileName=None):
+    arg1 = './articlesUrls.txt'
+    arg2 = './articles.csv'
+    if articleLinksFile != None:
+        arg1 = articleLinksFile
+    if saveFileName != None:
+        arg2 = saveFileName
+    downloadArticles(arg1, arg2)
+
 
 # Read articles from ./articles.csv and use Gensim to train a Word2Vec model from these articles
 # Then save them to /model/word2vec.model
@@ -13,27 +21,20 @@ def doTraining():
     model = computeBiasWords(articles)
     model.save('../model/word2vec.model')
 
+
 # The 1o chosen biased words
 # These 10 words are chosen from these page:
 # https://blog.ongig.com/diversity-and-inclusion/biased-language-examples/
 # https://www.niu.edu/writingtutorial/style/bias-free-language.shtml
 # Send in a file name if you want to save the result to a file.
 # Result file will appear inside 'results' folder
-def doDisplayResult(resultFileName=None):
+def doDisplayResult(resultFileName=None, biasedWords=None):
     # Load pre-trained model and print out some results
     model = Word2Vec.load('../model/word2vec.model')
-    biasedWords = [
-        "housewife",
-        "old",
-        "policeman",
-        "maid",
-        "homosexual",
-        "aliens",
-        "slave",
-        "gay",
-        "tribe",
-        "actress"
-    ]
+    if biasedWords == None:
+        biasedWords = [
+            "housewife", "old", "policeman", "maid", "homosexual", "aliens", "slave", "gay", "tribe", "actress"
+        ]
     result = []
     for w in biasedWords:
         try:
@@ -53,9 +54,10 @@ def doDisplayResult(resultFileName=None):
             for i in range(0, 100):
                 row = []
                 for j in range(0, 10):
-                    row.append(result[j][i][0] + ":" + str(round(result[j][i][1],4)))
+                    row.append(result[j][i][0] + ":" + str(round(result[j][i][1], 4)))
                 writer.writerow(row)
+
 
 # doDownload()
 # doTraining()
-doDisplayResult('result.csv')
+doDisplayResult(resultFileName='result.csv')
