@@ -4,14 +4,8 @@ from functions import *
 # 1st argument: the file which stores the article urls to be downloaded
 # 2nd argument: the file which stores the downloaded articles
 # Some url can't be downloaded due to some backend reasons.
-def doDownload(articleLinksFile=None, saveFileName=None):
-    arg1 = './articlesUrls.txt'
-    arg2 = './articles.csv'
-    if articleLinksFile != None:
-        arg1 = articleLinksFile
-    if saveFileName != None:
-        arg2 = saveFileName
-    downloadArticles(arg1, arg2)
+def doDownload(articleLinksFile='./articlesUrls.txt', saveFileName='./articles.csv'):
+    downloadArticles(articleLinksFile, saveFileName)
 
 
 # Read articles from ./articles.csv and use Gensim to train a Word2Vec model from these articles
