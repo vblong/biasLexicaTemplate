@@ -10,7 +10,7 @@ Word Embedding is a language modeling technique used for mapping words to vector
 
 Word2Vec consists of models for generating word embedding. These models are shallow two layer neural networks having one input layer, one hidden layer and one output layer.
 
-<b>First, scrape a dataset from any english newspaper you like ( You can write your own script or adapt an existing solution). Your dataset should at least contain a 1000 articles and should be no older than 2017. Then, write a program in Python which takes your dataset and calculates the 1000 most likely bias words for any 10 bias words of your choice. So you will choose 10 words that you think are good examples for bias in your dataset (See a short description of what bias is on https://www.thoughtco.com/what-is-biased-language-1689168), and then use word embeddings to calculate the 100 most
+<b>First, scrape a dataset from any english newspaper you like ( You can write your own script or adapt an existing solution). Your dataset should at least contain a 1000 articles and should be no older than 2017. Then, write a program in Python which takes your dataset and calculates the 1000 most likely bias words for any 10 bias words of your choice. So you will choose 10 words that you think are good examples for bias in your dataset (See a short description of what bias is onhttps://www.thoughtco.com/what-is-biased-language-1689168), and then use word embeddings to calculate the 100 most
  similar words to each of those words. Print out the cosine distances of each word to all its most similar words. You will need to use tokenization and charakter replacements, but are free in any model choice. An example of the process on how to calculate the bias words is given in this paper: http://wikiworkshop.org/2018/papers/wikiworkshop2018_paper_1.pdf. 
 Helpful python modules can be genism and nltk. To enhance your creativity, you are free of choice in the selection of a newspaper and any type of scraping.</b>
 
@@ -43,7 +43,7 @@ _From now on, push every change to GitHub!_
 6.    write comments
 7.    avoid long functions
 8.    use variable names that speak for themselves! bad: "tmp", good: "named_entity_counter"
-9.    For more information on how to write good Python code and documentation, see https://www.python.org/dev/peps/pep-0008/
+9.    For more information on how to write good Python code and documentation, seehttps://www.python.org/dev/peps/pep-0008/
 
 
 
